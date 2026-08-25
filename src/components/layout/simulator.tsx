@@ -66,7 +66,7 @@ export function SimulatorPanel() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-sm text-white shadow-lg"
+        className="flex items-center gap-2 rounded-full bg-sidebar px-4 py-2.5 text-sm text-white shadow-[0_12px_30px_rgba(11,28,26,0.35)]"
       >
         <FlaskConical size={16} />
         Simulador

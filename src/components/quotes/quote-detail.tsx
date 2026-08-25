@@ -36,18 +36,23 @@ export function QuoteDetail({
         title={quote.number}
         subtitle={quote.customer?.name ?? quote.lead?.name ?? "Sem cliente"}
         actions={
-          <Button
-            disabled={pending}
-            onClick={() =>
-              start(async () => {
-                const res = await sendQuoteWhatsApp(quote.id);
-                setWa(res.waUrl);
-                if (res.waUrl) window.open(res.waUrl, "_blank");
-              })
-            }
-          >
-            Enviar pelo WhatsApp
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button href={`/p/orcamentos/${quote.id}`} target="_blank" variant="secondary">
+              Página do cliente
+            </Button>
+            <Button
+              disabled={pending}
+              onClick={() =>
+                start(async () => {
+                  const res = await sendQuoteWhatsApp(quote.id);
+                  setWa(res.waUrl);
+                  if (res.waUrl) window.open(res.waUrl, "_blank");
+                })
+              }
+            >
+              Enviar pelo WhatsApp
+            </Button>
+          </div>
         }
       />
       <div className="mb-4 flex flex-wrap items-center gap-3">

@@ -16,6 +16,8 @@ npm run setup
 npm run dev
 ```
 
+Abra `http://localhost:3000`. O site institucional fica na home; o app começa em `/login`.
+
 ## Stack
 
 Next.js App Router, Prisma + SQLite, sessões em cookie, WhatsApp mock (pronto para Cloud API).

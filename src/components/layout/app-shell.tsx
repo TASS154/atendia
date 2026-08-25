@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Sidebar } from "./sidebar";
 import { Topbar } from "./topbar";
 import { SimulatorPanel } from "./simulator";
+import { DemoGuide } from "./demo-guide";
 
 export function AppShell({
   company,
@@ -26,7 +27,7 @@ export function AppShell({
 }) {
   const [menu, setMenu] = useState(false);
   return (
-    <div className="flex min-h-full">
+    <div className="flex min-h-full bg-bg">
       <Sidebar
         company={company}
         user={user}
@@ -38,6 +39,7 @@ export function AppShell({
         <main className="flex-1 px-4 py-6 lg:px-8">{children}</main>
       </div>
       <SimulatorPanel />
+      <DemoGuide />
     </div>
   );
 }

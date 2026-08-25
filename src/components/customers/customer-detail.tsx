@@ -56,9 +56,7 @@ export function CustomerDetail({
         subtitle="Prontuário comercial — cada passo do relacionamento fica registrado."
         actions={
           <>
-            <Link href={`/orcamentos/novo?customerId=${customer.id}`}>
-              <Button>Novo orçamento</Button>
-            </Link>
+            <Button href={`/orcamentos/novo?customerId=${customer.id}`}>Novo orçamento</Button>
             <Button
               variant="secondary"
               disabled={pending}

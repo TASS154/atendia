@@ -22,9 +22,7 @@ export default async function QuotesPage() {
         title="Orçamentos"
         subtitle="Do rascunho ao WhatsApp — o status muda de verdade e alimenta o dashboard."
         actions={
-          <Link href="/orcamentos/novo">
-            <Button>Novo orçamento</Button>
-          </Link>
+          <Button href="/orcamentos/novo">Novo orçamento</Button>
         }
       />
       <div className="hidden overflow-hidden rounded-2xl border border-line md:block">
@@ -40,7 +38,7 @@ export default async function QuotesPage() {
           </thead>
           <tbody className="bg-surface">
             {quotes.map((q) => (
-              <tr key={q.id} className="border-t border-line">
+              <tr key={q.id} className="border-t border-line transition hover:bg-bg">
                 <td className="px-4 py-3">
                   <Link href={`/orcamentos/${q.id}`} className="font-medium hover:text-brand">
                     {q.number}

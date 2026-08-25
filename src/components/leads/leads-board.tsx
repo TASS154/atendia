@@ -54,7 +54,7 @@ export function LeadsBoard({
         {grouped.map((col) => (
           <div
             key={col.id}
-            className="w-72 shrink-0 rounded-2xl bg-bg-2/70 p-3"
+            className="w-[17.5rem] shrink-0 rounded-3xl border border-line/70 bg-bg-2/50 p-3"
             onDragOver={(e) => e.preventDefault()}
             onDrop={(e) => {
               const id = e.dataTransfer.getData("text/lead");

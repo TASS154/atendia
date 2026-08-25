@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PUBLIC = ["/login", "/api/whatsapp/webhook"];
+const PUBLIC_EXACT = ["/", "/login", "/precos"];
+const PUBLIC_PREFIX = ["/p/", "/api/whatsapp/webhook"];
 
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -14,15 +15,17 @@ export function proxy(request: NextRequest) {
   }
 
   const session = request.cookies.get("atendia_session")?.value;
-  const isPublic = PUBLIC.some((p) => pathname === p || pathname.startsWith(`${p}/`));
+  const isPublic =
+    PUBLIC_EXACT.includes(pathname) ||
+    PUBLIC_PREFIX.some((p) => pathname === p || pathname.startsWith(p));
 
-  if (!session && !isPublic && pathname !== "/login") {
+  if (!session && !isPublic) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  if (session && (pathname === "/login" || pathname === "/")) {
+  if (session && pathname === "/login") {
     const url = request.nextUrl.clone();
     url.pathname = "/dashboard";
     return NextResponse.redirect(url);

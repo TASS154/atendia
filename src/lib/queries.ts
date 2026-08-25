@@ -25,6 +25,10 @@ export async function getDashboardData(companyId: string) {
     overduePayments,
     unconfirmedAppointments,
     staleLeads,
+    recentLeads,
+    recentQuotes,
+    openTasks,
+    unreadInbox,
   ] = await Promise.all([
     prisma.lead.count({
       where: { companyId, stage: "NEW" },
@@ -90,6 +94,27 @@ export async function getDashboardData(companyId: string) {
         lastContactAt: { lte: twoDaysAgo },
       },
     }),
+    prisma.lead.findMany({
+      where: { companyId },
+      include: { owner: true },
+      orderBy: { updatedAt: "desc" },
+      take: 5,
+    }),
+    prisma.quote.findMany({
+      where: { companyId },
+      include: { customer: true, lead: true },
+      orderBy: { updatedAt: "desc" },
+      take: 4,
+    }),
+    prisma.task.findMany({
+      where: { companyId, status: { not: "DONE" } },
+      include: { owner: true, customer: true },
+      orderBy: { dueDate: "asc" },
+      take: 4,
+    }),
+    prisma.conversation.count({
+      where: { companyId, unreadCount: { gt: 0 } },
+    }),
   ]);
 
   const revenueMonth = monthPayments.reduce((a, p) => a + p.amount, 0);
@@ -115,7 +140,10 @@ export async function getDashboardData(companyId: string) {
     },
     staleLeads > 0 && {
       href: "/leads",
-      text: `${staleLeads} leads estão sem contato há mais de 48 horas`,
+      text:
+        staleLeads === 1
+          ? "1 lead está sem contato há mais de 48 horas"
+          : `${staleLeads} leads estão sem contato há mais de 48 horas`,
     },
   ].filter(Boolean) as { href: string; text: string }[];
 
@@ -148,6 +176,10 @@ export async function getDashboardData(companyId: string) {
     }),
     alerts,
     todayAppointments,
+    recentLeads,
+    recentQuotes,
+    openTasks,
+    unreadInbox,
   };
 }
 

@@ -19,7 +19,7 @@ export function Field({
 }
 
 const fieldClass =
-  "w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ink outline-none transition placeholder:text-stone-400 focus:border-brand";
+  "w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-sm text-ink outline-none transition placeholder:text-stone-400 focus:border-brand focus:ring-4 focus:ring-brand/10";
 
 export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cn(fieldClass, className)} {...props} />;

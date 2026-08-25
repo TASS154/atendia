@@ -73,7 +73,7 @@ export function CustomersView({
           </thead>
           <tbody className="bg-surface">
             {filtered.map((c) => (
-              <tr key={c.id} className="border-t border-line">
+              <tr key={c.id} className="border-t border-line transition hover:bg-bg">
                 <td className="px-4 py-3">
                   <Link href={`/clientes/${c.id}`} className="font-medium hover:text-brand">
                     {c.name}
