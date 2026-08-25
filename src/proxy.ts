@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const PUBLIC_EXACT = ["/", "/login", "/precos"];
+const PUBLIC_EXACT = ["/", "/login", "/precos", "/sobre", "/casos", "/contato"];
 const PUBLIC_PREFIX = ["/p/", "/api/whatsapp/webhook"];
 
 export function proxy(request: NextRequest) {
