@@ -12,7 +12,7 @@ export function Card({
   return (
     <div
       className={cn(
-        "rounded-3xl border border-line/80 bg-surface shadow-[0_1px_2px_rgba(20,18,16,0.04),0_12px_32px_rgba(20,18,16,0.04)]",
+        "rounded-3xl border border-line/80 bg-surface shadow-[0_1px_2px_rgba(20,18,16,0.04),0_16px_40px_rgba(20,18,16,0.045)]",
         className,
       )}
     >
@@ -79,14 +79,14 @@ export function StatCard({
   icon?: ReactNode;
 }) {
   const inner = (
-    <Card className="h-full p-4 transition duration-200 hover:-translate-y-0.5 hover:border-brand/25">
+    <Card className="h-full p-4 transition duration-200 hover:-translate-y-0.5 hover:border-brand/30">
       <div className="flex items-start justify-between gap-3">
-        <p className="text-xs text-muted">{label}</p>
+        <p className="text-[11px] uppercase tracking-[0.14em] text-muted">{label}</p>
         {icon ? (
-          <span className="rounded-full bg-brand-soft p-1.5 text-brand-2">{icon}</span>
+          <span className="rounded-2xl bg-brand-soft p-1.5 text-brand-2">{icon}</span>
         ) : null}
       </div>
-      <p className="mt-2 text-2xl font-semibold tracking-tight">{value}</p>
+      <p className="mt-3 font-serif text-3xl tracking-tight">{value}</p>
       {hint ? <p className="mt-1 text-[11px] text-muted">{hint}</p> : null}
     </Card>
   );

@@ -2,10 +2,12 @@
 
 Hub comercial para PMEs que vendem e atendem pelo WhatsApp: lead → cliente → orçamento → follow-up → agendamento → serviço → pagamento → pós-venda.
 
-Demo ao vivo com o tenant **Studio Bella** (salão em Campinas).
+Site institucional + demo ao vivo com o tenant **Studio Bella** (salão em Campinas).
 
 ## Demo
 
+- Site: `/` · Preços: `/precos` · Casos: `/casos` · Sobre: `/sobre` · Contato: `/contato`
+- App: `/login`
 - Conta: `ivan.p@example.net`
 - Senha: `demo1234`
 
@@ -16,7 +18,7 @@ npm run setup
 npm run dev
 ```
 
-Abra `http://localhost:3000`. O site institucional fica na home; o app começa em `/login`.
+Abra `http://localhost:3000`.
 
 ## Stack
 

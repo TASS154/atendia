@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: "%s · Atendia",
   },
   description:
-    "Organize clientes, vendas e atendimento em um único lugar. Pare de perder dinheiro por esquecer de acompanhar seus clientes.",
+    "Organize clientes, vendas e atendimento em um único lugar. Pare de perder dinheiro por esquecer de acompanhar seus clientes. Demo ao vivo com o Studio Bella.",
   metadataBase: new URL("https://atendia-kappa.vercel.app"),
   openGraph: {
     title: "Atendia — pare de perder dinheiro por esquecer o cliente",

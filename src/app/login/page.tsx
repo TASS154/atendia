@@ -5,6 +5,7 @@ import Link from "next/link";
 import { demoLoginAction, loginAction } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Field, Input } from "@/components/ui/field";
+import { Logo } from "@/components/marketing/logo";
 
 export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
@@ -14,19 +15,17 @@ export default function LoginPage() {
     <div className="mesh grain min-h-full">
       <div className="mx-auto flex min-h-full max-w-6xl flex-col px-6 py-8">
         <div className="flex items-center justify-between">
-          <Link href="/" className="font-serif text-2xl tracking-tight">
-            Atendia
-          </Link>
+          <Logo />
           <Link href="/" className="text-sm text-muted hover:text-ink">
             Voltar ao site
           </Link>
         </div>
         <div className="grid flex-1 items-center gap-12 py-12 lg:grid-cols-2">
-          <div className="max-w-lg">
-            <p className="text-xs uppercase tracking-[0.22em] text-brand-2">
+          <div className="max-w-lg rise">
+            <p className="inline-flex rounded-full border border-brand/20 bg-brand-soft/70 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-brand-2">
               Demonstração ao vivo
             </p>
-            <h1 className="mt-3 font-serif text-5xl leading-tight text-ink">
+            <h1 className="mt-4 font-serif text-5xl leading-tight text-ink">
               Entre como dona do Studio Bella.
             </h1>
             <p className="mt-4 text-lg text-muted">

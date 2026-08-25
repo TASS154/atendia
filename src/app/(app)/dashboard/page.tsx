@@ -101,6 +101,12 @@ export default async function DashboardPage() {
           <div className="mt-6 space-y-4">
             {data.funnel.map((step) => {
               const meta = FUNNEL_STAGES.find((s) => s.id === step.stage);
+              const bar =
+                step.stage === "WON"
+                  ? "bg-ok"
+                  : step.stage === "QUOTE" || step.stage === "NEGOTIATION"
+                    ? "bg-copper"
+                    : "bg-brand";
               return (
                 <Link key={step.stage} href="/leads" className="block">
                   <div className="mb-1 flex items-center justify-between text-sm">
@@ -111,7 +117,7 @@ export default async function DashboardPage() {
                   </div>
                   <div className="h-2.5 rounded-full bg-bg-2">
                     <div
-                      className="h-2.5 rounded-full bg-brand"
+                      className={`h-2.5 rounded-full ${bar}`}
                       style={{ width: `${Math.max(8, (step.count / maxFunnel) * 100)}%` }}
                     />
                   </div>
@@ -132,7 +138,7 @@ export default async function DashboardPage() {
                   <Link
                     key={a.text}
                     href={a.href}
-                    className="block rounded-2xl border border-line bg-bg px-3 py-3 text-sm transition hover:border-copper/40"
+                    className="block rounded-2xl border border-line bg-bg px-3 py-3 text-sm transition hover:border-copper/40 hover:bg-white"
                   >
                     {a.text}
                   </Link>

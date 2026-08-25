@@ -27,7 +27,7 @@ export function AppShell({
 }) {
   const [menu, setMenu] = useState(false);
   return (
-    <div className="flex min-h-full bg-bg">
+    <div className="flex min-h-full bg-bg mesh">
       <Sidebar
         company={company}
         user={user}

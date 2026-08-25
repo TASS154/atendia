@@ -87,9 +87,14 @@ export function Sidebar({
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <Link href="/" className="px-5 pb-2 pt-5" onClick={onClose}>
-          <div className="font-serif text-2xl tracking-tight">Atendia</div>
-          <div className="mt-0.5 text-xs text-white/55">{company}</div>
+        <Link href="/" className="px-5 pb-3 pt-5" onClick={onClose}>
+          <div className="flex items-center gap-2.5">
+            <span className="grid h-8 w-8 place-items-center rounded-xl bg-white/12 text-[13px] font-semibold">
+              A
+            </span>
+            <span className="font-serif text-2xl tracking-tight">Atendia</span>
+          </div>
+          <div className="mt-2 text-xs text-white/55">{company}</div>
         </Link>
         <nav className="mt-2 flex-1 space-y-5 overflow-y-auto px-3 pb-4 scrollbar-thin">
           {GROUPS.map((group) => (
@@ -110,7 +115,7 @@ export function Sidebar({
                       className={cn(
                         "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
                         active
-                          ? "bg-white/12 text-white shadow-inner"
+                          ? "bg-white/12 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
                           : "text-white/65 hover:bg-white/5 hover:text-white",
                       )}
                     >

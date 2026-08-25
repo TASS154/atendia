@@ -1,22 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f3efe7;
-  --bg-2: #e8e1d4;
-  --surface: #fffcf8;
-  --ink: #141210;
+  --bg: #f2eee6;
+  --bg-2: #e6dfd2;
+  --surface: #fffdfa;
+  --ink: #12100e;
   --ink-soft: #6a635b;
-  --line: #e4ddd1;
-  --brand: #0e6f67;
-  --brand-2: #0a4e49;
-  --brand-soft: #d4efe9;
+  --line: #e2dbcf;
+  --brand: #0d6b64;
+  --brand-2: #084843;
+  --brand-soft: #d2f0ea;
   --copper: #c45c26;
   --danger: #b42318;
   --warn: #b45309;
   --ok: #047857;
-  --sidebar: #0b1c1a;
+  --sidebar: #071614;
   --sidebar-2: #12302c;
-  --glow: rgba(14, 111, 103, 0.22);
+  --glow: rgba(13, 107, 100, 0.22);
 }
 
 @theme inline {
@@ -85,15 +85,15 @@ textarea {
 
 .mesh {
   background:
-    radial-gradient(900px 420px at 8% -10%, rgba(14, 111, 103, 0.18), transparent 55%),
-    radial-gradient(700px 380px at 92% 0%, rgba(196, 92, 38, 0.14), transparent 50%),
-    radial-gradient(500px 300px at 70% 90%, rgba(14, 111, 103, 0.08), transparent 50%);
+    radial-gradient(900px 420px at 8% -10%, rgba(13, 107, 100, 0.2), transparent 55%),
+    radial-gradient(700px 380px at 92% 0%, rgba(196, 92, 38, 0.16), transparent 50%),
+    radial-gradient(500px 300px at 70% 90%, rgba(13, 107, 100, 0.08), transparent 50%);
 }
 
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -102,5 +102,9 @@ textarea {
 }
 
 .rise {
-  animation: rise 0.55s ease both;
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+html {
+  scroll-behavior: smooth;
 }

@@ -72,7 +72,7 @@ export function LeadsBoard({
                   draggable
                   onDragStart={(e) => e.dataTransfer.setData("text/lead", lead.id)}
                   onClick={() => setSelected(lead)}
-                  className="w-full rounded-2xl border border-line bg-surface p-3 text-left shadow-sm"
+                  className="w-full rounded-2xl border border-line bg-surface p-3 text-left shadow-sm transition hover:-translate-y-px hover:border-brand/30"
                 >
                   <p className="font-medium">{lead.name}</p>
                   <p className="mt-1 text-xs text-muted">{formatPhone(lead.phone)}</p>

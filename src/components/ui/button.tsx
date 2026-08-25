@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 const variants = {
   primary:
-    "bg-brand text-white shadow-[0_8px_20px_rgba(14,111,103,0.22)] hover:bg-brand-2",
+    "bg-brand text-white shadow-[0_10px_24px_rgba(13,107,100,0.24)] hover:-translate-y-px hover:bg-brand-2",
   secondary: "border border-line bg-surface text-ink hover:border-brand/30 hover:bg-bg",
   ghost: "text-muted hover:bg-bg-2 hover:text-ink",
   danger: "bg-danger text-white hover:opacity-90",
