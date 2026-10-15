@@ -3,10 +3,9 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 const variants = {
-  primary:
-    "bg-brand text-white shadow-[0_10px_24px_rgba(13,107,100,0.24)] hover:-translate-y-px hover:bg-brand-2",
-  secondary: "border border-line bg-surface text-ink hover:border-brand/30 hover:bg-bg",
-  ghost: "text-muted hover:bg-bg-2 hover:text-ink",
+  primary: "bg-brand text-white hover:bg-brand-2",
+  secondary: "border border-line bg-surface text-ink hover:bg-bg-2",
+  ghost: "text-muted hover:text-ink",
   danger: "bg-danger text-white hover:opacity-90",
   copper: "bg-copper text-white hover:opacity-90",
   dark: "bg-ink text-white hover:bg-black",
@@ -24,7 +23,7 @@ function buttonClass(
   className?: string,
 ) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition duration-200 disabled:opacity-50",
+    "inline-flex items-center justify-center gap-2 rounded-sm font-medium tracking-wide transition duration-200 disabled:opacity-50",
     sizes[size],
     variants[variant],
     className,

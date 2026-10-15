@@ -11,18 +11,10 @@ export function Logo({
   className?: string;
 }) {
   return (
-    <Link href={href} className={cn("inline-flex items-center gap-2.5", className)}>
+    <Link href={href} className={cn("inline-flex items-baseline gap-2", className)}>
       <span
         className={cn(
-          "grid h-8 w-8 place-items-center rounded-xl text-[13px] font-semibold tracking-tight shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]",
-          light ? "bg-white/15 text-white" : "bg-brand text-white",
-        )}
-      >
-        A
-      </span>
-      <span
-        className={cn(
-          "font-serif text-[1.65rem] leading-none tracking-tight",
+          "font-serif text-[1.7rem] leading-none tracking-tight",
           light ? "text-white" : "text-ink",
         )}
       >

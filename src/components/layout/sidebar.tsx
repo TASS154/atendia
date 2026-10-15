@@ -23,33 +23,41 @@ import { logoutAction } from "@/actions/auth";
 
 const GROUPS = [
   {
-    label: "Operação",
+    label: "Hoje",
+    items: [{ href: "/dashboard", label: "Visão da manhã", icon: LayoutDashboard }],
+  },
+  {
+    label: "Chegou",
     items: [
-      { href: "/dashboard", label: "Visão geral", icon: LayoutDashboard },
       { href: "/whatsapp", label: "WhatsApp", icon: MessageCircle },
+      { href: "/leads", label: "Leads", icon: Kanban },
+    ],
+  },
+  {
+    label: "Combinou",
+    items: [
+      { href: "/orcamentos", label: "Orçamentos", icon: Receipt },
       { href: "/agenda", label: "Agenda", icon: CalendarDays },
+      { href: "/clientes", label: "Clientes", icon: Users },
+    ],
+  },
+  {
+    label: "Entregou",
+    items: [
+      { href: "/ordens", label: "Ordens", icon: ClipboardList },
+      { href: "/servicos", label: "Serviços", icon: Scissors },
       { href: "/tarefas", label: "Tarefas", icon: ListTodo },
     ],
   },
   {
-    label: "Comercial",
+    label: "Cobrou e volta",
     items: [
-      { href: "/leads", label: "Leads", icon: Kanban },
-      { href: "/clientes", label: "Clientes", icon: Users },
-      { href: "/orcamentos", label: "Orçamentos", icon: Receipt },
-      { href: "/servicos", label: "Serviços", icon: Scissors },
-    ],
-  },
-  {
-    label: "Entrega e caixa",
-    items: [
-      { href: "/ordens", label: "Ordens de serviço", icon: ClipboardList },
       { href: "/financeiro", label: "Financeiro", icon: Wallet },
       { href: "/recuperacao", label: "Para recuperar", icon: Repeat2 },
     ],
   },
   {
-    label: "Gestão",
+    label: "Casa",
     items: [
       { href: "/automacao", label: "Automação", icon: Sparkles },
       { href: "/relatorios", label: "Relatórios", icon: BarChart3 },
@@ -76,30 +84,25 @@ export function Sidebar({
       {open ? (
         <button
           type="button"
-          className="fixed inset-0 z-30 bg-ink/30 backdrop-blur-sm lg:hidden"
+          className="fixed inset-0 z-30 bg-ink/30 lg:hidden"
           onClick={onClose}
           aria-label="Fechar menu"
         />
       ) : null}
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 flex w-[280px] flex-col bg-sidebar text-white transition-transform lg:static lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-40 flex w-[268px] flex-col bg-sidebar text-white transition-transform lg:static lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <Link href="/" className="px-5 pb-3 pt-5" onClick={onClose}>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-8 w-8 place-items-center rounded-xl bg-white/12 text-[13px] font-semibold">
-              A
-            </span>
-            <span className="font-serif text-2xl tracking-tight">Atendia</span>
-          </div>
-          <div className="mt-2 text-xs text-white/55">{company}</div>
+        <Link href="/" className="px-5 pb-2 pt-6" onClick={onClose}>
+          <span className="font-serif text-2xl tracking-tight">Atendia</span>
+          <div className="mt-1 text-xs text-white/50">{company}</div>
         </Link>
-        <nav className="mt-2 flex-1 space-y-5 overflow-y-auto px-3 pb-4 scrollbar-thin">
+        <nav className="mt-3 flex-1 space-y-5 overflow-y-auto px-3 pb-4 scrollbar-thin">
           {GROUPS.map((group) => (
             <div key={group.label}>
-              <p className="mb-1.5 px-3 text-[10px] uppercase tracking-[0.18em] text-white/40">
+              <p className="mb-1 px-3 text-[10px] uppercase tracking-[0.18em] text-white/35">
                 {group.label}
               </p>
               <div className="space-y-0.5">
@@ -113,10 +116,10 @@ export function Sidebar({
                       href={item.href}
                       onClick={onClose}
                       className={cn(
-                        "flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
+                        "flex items-center gap-3 px-3 py-2 text-sm transition",
                         active
-                          ? "bg-white/12 text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]"
-                          : "text-white/65 hover:bg-white/5 hover:text-white",
+                          ? "bg-white/10 text-white"
+                          : "text-white/60 hover:bg-white/5 hover:text-white",
                       )}
                     >
                       <Icon size={16} />
@@ -128,9 +131,9 @@ export function Sidebar({
             </div>
           ))}
         </nav>
-        <div className="m-3 rounded-2xl border border-white/10 bg-white/5 p-3">
+        <div className="m-3 border border-white/10 p-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-brand text-xs font-semibold">
+            <div className="flex h-9 w-9 items-center justify-center bg-brand text-xs font-semibold">
               {user.initials}
             </div>
             <div className="min-w-0">

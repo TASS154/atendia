@@ -1,98 +1,40 @@
-"use client";
-
-import {
-  ArrowRight,
-  CalendarDays,
-  Check,
-  MessageCircle,
-  Receipt,
-  Repeat2,
-  Sparkles,
-  Wallet,
-} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { photos } from "@/lib/photos";
 import { Button } from "@/components/ui/button";
+import { EditorialPhoto } from "./editorial-photo";
+import { Fade } from "./fade";
+import { MarketingFrame } from "./frame";
 import { ProductPreview } from "./product-preview";
-import { SiteHeader } from "./site-header";
-import { SiteFooter } from "./site-footer";
 
-const FEATURES = [
+const DAY = [
   {
-    icon: MessageCircle,
-    title: "WhatsApp vira operação",
-    body: "Inbox com contexto do cliente, templates e histórico. A conversa deixa de morrer no celular da dona.",
-  },
-  {
-    icon: Receipt,
-    title: "Orçamento com follow-up",
-    body: "Do rascunho ao Pix. Status muda, o funil reage e ninguém esquece de cobrar resposta.",
-  },
-  {
-    icon: CalendarDays,
-    title: "Agenda da equipe",
-    body: "Horários, profissionais e confirmação no mesmo lugar — sem planilha paralela.",
-  },
-  {
-    icon: Wallet,
-    title: "Caixa à vista",
-    body: "A receber, atrasado e recebido no mês. O dinheiro que ainda não entrou deixa de ser surpresa.",
-  },
-  {
-    icon: Repeat2,
-    title: "Recuperação de clientes",
-    body: "Quem sumiu há 30 dias aparece numa lista pronta para mensagem. Pós-venda deixa de ser improvisação.",
-  },
-  {
-    icon: Sparkles,
-    title: "Automação sem drama",
-    body: "Follow-up de orçamento, lembrete de horário e retorno de serviço — no modo demo, você vê acontecendo.",
-  },
-];
-
-const STEPS = [
-  {
-    n: "01",
-    title: "O lead chega no WhatsApp",
-    body: "A conversa vira card no funil, com valor estimado e responsável. Nada se perde entre o celular e o caderno.",
-  },
-  {
-    n: "02",
-    title: "Você orça, agenda e cobra",
-    body: "Proposta, horário e pagamento ficam no prontuário da pessoa — não em prints espalhados no grupo da equipe.",
-  },
-  {
-    n: "03",
-    title: "O sistema lembra o retorno",
-    body: "Se o cliente some, a recuperação aparece. Se o orçamento esfria, o follow-up dispara. O dono só decide.",
-  },
-];
-
-const PLANS = [
-  {
-    name: "Demonstração",
-    price: "Grátis",
-    hint: "Studio Bella, dados reais de operação",
-    items: ["Inbox mock", "Funil completo", "Automações visíveis", "Simulador ao vivo"],
-    cta: "Entrar na demo",
+    hour: "08:12",
+    title: "O Zap chega antes da primeira cliente",
+    body: "Rita manda áudio: luzes, Instagram, “vocês têm horário amanhã?”. Sem o Atendia, isso mora no celular da recepção até alguém lembrar.",
     href: "/login",
-    featured: false,
+    cta: "Ver o inbox da Marina",
   },
   {
-    name: "Essencial",
-    price: "R$ 189",
-    hint: "por mês, 1 unidade",
-    items: ["Até 3 usuários", "WhatsApp Cloud API", "Orçamentos e agenda", "Financeiro básico"],
-    cta: "Falar com vendas",
-    href: "/contato",
-    featured: true,
+    hour: "08:14",
+    title: "A conversa vira um card, com dono",
+    body: "O lead entra no funil com valor estimado. Não depende de print no grupo da equipe nem de caderno na gaveta.",
+    href: "/login",
+    cta: "Abrir o funil",
   },
   {
-    name: "Operação",
-    price: "R$ 349",
-    hint: "por mês, equipe completa",
-    items: ["Usuários ilimitados", "Automações avançadas", "Relatórios do dono", "Vários profissionais"],
-    cta: "Falar com vendas",
-    href: "/contato",
-    featured: false,
+    hour: "11:40",
+    title: "O orçamento sai com validade e follow-up",
+    body: "Proposta numerada, itens, Pix. Se Rita não responder, o sistema lembra — a Marina só confirma o horário.",
+    href: "/login",
+    cta: "Ver um orçamento",
+  },
+  {
+    hour: "Segunda que vem",
+    title: "Quem não voltou aparece numa lista",
+    body: "Trinta dias sem retorno e a cliente está pronta para uma mensagem. Pós-venda deixa de ser memória da dona.",
+    href: "/login",
+    cta: "Lista de recuperação",
   },
 ];
 
@@ -113,282 +55,189 @@ const FAQ = [
     q: "Precisa de cartão para testar?",
     a: "Não. Entre com um clique, percorra o roteiro e saia. A conta da Marina já vem preenchida.",
   },
-  {
-    q: "Dá para conectar o WhatsApp de verdade?",
-    a: "A demo usa um inbox mock para você mexer sem risco. Em produção o Atendia fala com a Cloud API — o número da empresa continua o mesmo.",
-  },
-  {
-    q: "A equipe precisa aprender um sistema novo?",
-    a: "O dia a dia continua no WhatsApp. O Atendia é o lugar onde o dono vê o que fechou, o que parou e o que precisa de follow-up.",
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    quote:
-      "Antes eu descobria orçamento parado quando a cliente já tinha ido em outro salão. Agora o follow-up sai sozinho e eu só confirmo o horário.",
-    name: "Marina Costa",
-    role: "Dona · Studio Bella, Campinas",
-  },
-  {
-    quote:
-      "A recepção parou de anotar retorno em papel. Quem some há 30 dias aparece numa lista. Recuperei três pacientes na primeira semana.",
-    name: "Dr. Paulo Henrique",
-    role: "Clínica Horizonte, Ribeirão Preto",
-  },
-  {
-    quote:
-      "Orçamento de funilaria saía no Zap e ninguém cobrava. Com status e Pix no mesmo lugar, o atraso deixou de ser surpresa no fim do mês.",
-    name: "Carla Nunes",
-    role: "Oficina Nunes, Jundiaí",
-  },
-];
-
-const COMPARISON = [
-  ["O que acontece hoje", "Com o Atendia"],
-  ["Lead chega e some no celular", "Lead vira card no funil, com dono e valor"],
-  ["Orçamento é um print", "Proposta com status, validade e follow-up"],
-  ["Agenda numa planilha", "Horário ligado ao cliente e ao profissional"],
-  ["Cobrança de memória", "A receber, atrasado e Pix no caixa"],
-  ["Pós-venda quando lembra", "Lista pronta de quem parou de voltar"],
 ];
 
 export function LandingPage() {
   return (
-    <div className="min-h-full bg-bg text-ink">
-      <SiteHeader />
-
-      <section className="mesh grain relative overflow-hidden">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
-          <div className="rise">
-            <p className="inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand-soft/70 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-brand-2">
-              Hub comercial para quem vive no WhatsApp
+    <MarketingFrame>
+      <section className="relative min-h-[88vh] overflow-hidden bg-sidebar text-white">
+        <Image
+          src={photos.salonDawn.src}
+          alt={photos.salonDawn.alt}
+          fill
+          priority
+          sizes="100vw"
+          className="photo-treat object-cover"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-r from-[#1a1410]/88 via-[#1a1410]/55 to-[#1a1410]/20"
+        />
+        <div className="grain absolute inset-0" />
+        <div className="relative mx-auto flex min-h-[88vh] max-w-6xl flex-col justify-end px-6 pb-14 pt-28">
+          <Fade>
+            <p className="text-[11px] uppercase tracking-[0.28em] text-white/70">
+              Studio Bella · Campinas · uma manhã qualquer
             </p>
-            <h1 className="mt-5 font-serif text-5xl leading-[1.05] tracking-tight sm:text-6xl">
-              Pare de perder dinheiro por esquecer o cliente.
+            <h1 className="mt-5 max-w-3xl font-serif text-5xl leading-[1.02] tracking-tight sm:text-7xl">
+              O cliente já falou no Zap.
+              <span className="italic text-white/80"> Quem segura a conversa?</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-muted">
-              Leads, orçamentos, agenda, cobrança e pós-venda no mesmo lugar.
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/75">
+              Leads, orçamentos, agenda, cobrança e retorno — no mesmo lugar.
               O Atendia transforma conversa solta em operação que fecha.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/login" size="lg">
-                Entrar no Studio Bella
-                <ArrowRight size={16} />
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Button href="/login" size="lg" variant="secondary">
+                Entrar como Marina
               </Button>
-              <Button href="#produto" size="lg" variant="secondary">
-                Ver o produto
-              </Button>
+              <Link href="#manha" className="ink-link text-sm text-white/80">
+                Acompanhar a manhã do salão
+              </Link>
             </div>
-            <p className="mt-4 text-xs text-muted">
-              Demo ao vivo · ivan.p@example.net · senha demo1234 · sem cartão
+            <p className="mt-5 text-[11px] tracking-wide text-white/50">
+              Demo ao vivo · sem cartão · ivan.p@example.net
             </p>
+          </Fade>
+        </div>
+      </section>
+
+      <section className="border-b border-line">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-10 md:grid-cols-3">
+          {[
+            ["Uma inbox", "no lugar de cinco conversas soltas no celular"],
+            ["Três movimentos", "lead, proposta, retorno — o sistema segura o resto"],
+            ["Doze minutos", "para o dono entender o funil na primeira visita"],
+          ].map(([stat, hint]) => (
+            <div key={stat} className="md:border-l md:border-line md:pl-8 first:md:border-l-0 first:md:pl-0">
+              <p className="font-serif text-3xl tracking-tight">{stat}</p>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{hint}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="manha" className="mx-auto max-w-6xl px-6 py-20">
+        <p className="text-[11px] uppercase tracking-[0.22em] text-copper">Um dia no salão</p>
+        <h2 className="mt-3 max-w-2xl font-serif text-4xl tracking-tight sm:text-5xl">
+          Não é um tour de features. É o caminho que o dinheiro faz — ou deixa de fazer.
+        </h2>
+        <p className="mt-4 max-w-xl text-muted">
+          Siga a ordem em que a Marina trabalha. Cada passo da demo abre o mesmo
+          registro que ela veria numa terça de verdade.
+        </p>
+
+        <div className="mt-14 grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr]">
+          <EditorialPhoto photo={photos.cutting} imgClassName="aspect-[3/4] object-cover" />
+          <ol className="space-y-0">
+            {DAY.map((beat, i) => (
+              <li key={beat.hour} className="border-t border-line py-7 first:border-t-0 first:pt-0">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-muted">
+                  {String(i + 1).padStart(2, "0")} · {beat.hour}
+                </p>
+                <h3 className="mt-2 font-serif text-2xl tracking-tight">{beat.title}</h3>
+                <p className="mt-2 max-w-md text-sm leading-relaxed text-muted">{beat.body}</p>
+                <Link href={beat.href} className="ink-link mt-4 inline-block text-sm text-brand-2">
+                  {beat.cta} →
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section id="produto" className="border-y border-line bg-surface/70">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.22em] text-muted">O que ela vê</p>
+            <h2 className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">
+              A tela da manhã, não um dashboard de consultoria.
+            </h2>
+            <p className="mt-4 leading-relaxed text-muted">
+              Alertas primeiro, agenda depois, números por último. A demo já vem
+              com Rita no inbox, orçamentos parados e quem sumiu há 30 dias.
+              Clique. Nada é mock de vitrine.
+            </p>
+            <Button href="/login" className="mt-8">
+              Abrir a operação
+            </Button>
           </div>
           <ProductPreview />
         </div>
       </section>
 
-      <section className="border-y border-line bg-surface/80">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-10 sm:grid-cols-3">
-          {[
-            ["12 min", "para o dono entender o funil na primeira visita"],
-            ["1 inbox", "no lugar de cinco conversas soltas no celular"],
-            ["30 dias", "e o cliente parado já aparece para recuperação"],
-          ].map(([stat, hint]) => (
-            <div key={stat}>
-              <p className="font-serif text-4xl tracking-tight">{stat}</p>
-              <p className="mt-1 text-sm text-muted">{hint}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section id="produto" className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-xs uppercase tracking-[0.22em] text-muted">O que o dono enxerga</p>
-        <h2 className="mt-3 max-w-2xl font-serif text-4xl tracking-tight">
-          Um único lugar para o que hoje está espalhado em conversas, cadernos e a cabeça da equipe.
-        </h2>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map((f) => (
-            <div
-              key={f.title}
-              className="rounded-3xl border border-line bg-surface p-6 shadow-[0_1px_0_rgba(20,18,16,0.04)] transition hover:-translate-y-0.5 hover:border-brand/25"
-            >
-              <span className="grid h-10 w-10 place-items-center rounded-2xl bg-brand-soft text-brand-2">
-                <f.icon size={18} />
-              </span>
-              <h3 className="mt-4 font-medium">{f.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{f.body}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="border-y border-line bg-surface/60">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-xs uppercase tracking-[0.22em] text-muted">Antes e depois</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-4xl tracking-tight">
-            Não é mais um CRM. É o que falta entre o Zap e o caixa.
-          </h2>
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-line bg-surface">
-            {COMPARISON.map((row, i) => (
-              <div
-                key={row[0]}
-                className={`grid gap-4 px-6 py-4 text-sm sm:grid-cols-2 ${
-                  i === 0
-                    ? "bg-sidebar text-white"
-                    : i % 2 === 0
-                      ? "bg-bg/60"
-                      : ""
-                }`}
-              >
-                <p className={i === 0 ? "text-white/70" : "text-muted"}>{row[0]}</p>
-                <p className={i === 0 ? "font-medium" : ""}>{row[1]}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="como" className="bg-sidebar text-white">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-xs uppercase tracking-[0.22em] text-white/50">Como funciona</p>
-          <h2 className="mt-3 font-serif text-4xl tracking-tight">
-            Três movimentos. O resto o sistema segura.
-          </h2>
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
-            {STEPS.map((s) => (
-              <div key={s.n} className="rounded-3xl border border-white/10 bg-white/5 p-6">
-                <p className="font-serif text-3xl text-white/35">{s.n}</p>
-                <h3 className="mt-4 text-lg">{s.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/65">{s.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="mx-auto max-w-6xl px-6 py-20">
-        <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="grid items-end gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <p className="text-xs uppercase tracking-[0.22em] text-copper">Caso da demo</p>
-            <h2 className="mt-3 font-serif text-4xl tracking-tight">Studio Bella, Campinas</h2>
-            <p className="mt-4 leading-relaxed text-muted">
-              Salão com quatro pessoas na operação. A Marina (dona) entra e vê leads
-              parados, orçamentos sem resposta, agenda do dia e clientes que sumiram.
-              Nada é mock de tela: cada número abre uma lista de verdade.
+            <p className="text-[11px] uppercase tracking-[0.22em] text-copper">Caso da demo</p>
+            <h2 className="mt-3 font-serif text-5xl tracking-tight">Studio Bella</h2>
+            <p className="mt-4 max-w-lg leading-relaxed text-muted">
+              Quatro pessoas na operação. Instagram trazendo lead o dia inteiro.
+              A Marina perdia orçamento de luzes porque a conversa ficava no
+              celular da recepção. Agora o lead tem dono, o orçamento tem
+              follow-up, e quem some entra na lista.
             </p>
-            <ul className="mt-6 space-y-2 text-sm">
-              {[
-                "30 clientes com histórico, tags e prontuário",
-                "Funil com novos, atendimento, orçamento e negociação",
-                "Inbox com conversas, templates e contexto ao lado",
-                "Automações de follow-up, lembrete e retorno",
-              ].map((item) => (
-                <li key={item} className="flex gap-2">
-                  <Check size={16} className="mt-0.5 text-brand" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <Button href="/casos" variant="secondary" className="mt-8">
-              Ver outros casos
-            </Button>
           </div>
-          <div className="rounded-[2rem] border border-line bg-surface p-6 shadow-[0_20px_50px_rgba(20,18,16,0.06)]">
-            <p className="text-sm text-muted">O que a Marina vê hoje</p>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              {[
-                ["Leads novos", "4"],
-                ["Orçamentos abertos", "vários"],
-                ["Agenda hoje", "cheia"],
-                ["Clientes parados", "lista pronta"],
-              ].map(([k, v]) => (
-                <div key={k} className="rounded-2xl bg-bg p-4">
-                  <p className="text-xs text-muted">{k}</p>
-                  <p className="mt-1 font-serif text-2xl">{v}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          <p className="font-serif text-xl italic leading-relaxed text-ink/80">
+            “Antes eu descobria orçamento parado quando a cliente já tinha ido em
+            outro salão.”
+            <span className="mt-3 block font-sans text-sm not-italic tracking-wide text-muted">
+              — Marina Costa, dona
+            </span>
+          </p>
         </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <EditorialPhoto photo={photos.stylist} imgClassName="aspect-[4/5] object-cover" />
+          <EditorialPhoto photo={photos.chairs} imgClassName="aspect-[4/5] object-cover" />
+          <EditorialPhoto photo={photos.wash} imgClassName="aspect-[4/5] object-cover" />
+        </div>
+        <Link href="/casos" className="ink-link mt-8 inline-block text-sm">
+          Clínica e oficina usam o mesmo fluxo →
+        </Link>
       </section>
 
-      <section className="border-y border-line bg-bg-2/40">
+      <section id="precos" className="border-y border-line">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-xs uppercase tracking-[0.22em] text-muted">Quem já organiza a operação</p>
-          <h2 className="mt-3 font-serif text-4xl tracking-tight">O dono para de caçar informação.</h2>
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {TESTIMONIALS.map((item) => (
-              <figure
-                key={item.name}
-                className="flex h-full flex-col rounded-[2rem] border border-line bg-surface p-6"
-              >
-                <blockquote className="flex-1 text-sm leading-relaxed text-ink/80">
-                  “{item.quote}”
-                </blockquote>
-                <figcaption className="mt-6">
-                  <p className="text-sm font-medium">{item.name}</p>
-                  <p className="text-xs text-muted">{item.role}</p>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="precos" className="bg-surface/60">
-        <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-xs uppercase tracking-[0.22em] text-muted">Preços</p>
-          <h2 className="mt-3 font-serif text-4xl tracking-tight">
-            Comece pela demo. Fale de plano depois.
-          </h2>
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {PLANS.map((plan) => (
-              <div
-                key={plan.name}
-                className={`rounded-[2rem] border p-6 ${
-                  plan.featured
-                    ? "border-brand bg-sidebar text-white shadow-[0_24px_50px_rgba(11,28,26,0.25)]"
-                    : "border-line bg-surface"
-                }`}
-              >
-                {plan.featured ? (
-                  <p className="mb-3 text-[11px] uppercase tracking-[0.18em] text-white/50">
-                    Mais escolhido
-                  </p>
-                ) : null}
-                <p className="text-sm">{plan.name}</p>
-                <p className="mt-2 font-serif text-4xl">{plan.price}</p>
-                <p className={`mt-1 text-sm ${plan.featured ? "text-white/60" : "text-muted"}`}>
-                  {plan.hint}
-                </p>
-                <ul className="mt-6 space-y-2 text-sm">
-                  {plan.items.map((item) => (
-                    <li key={item} className="flex gap-2">
-                      <Check size={16} className="mt-0.5" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Button
-                  href={plan.href}
-                  className="mt-6 w-full"
-                  variant={plan.featured ? "secondary" : "primary"}
-                >
-                  {plan.cta}
-                </Button>
-              </div>
-            ))}
+          <p className="text-[11px] uppercase tracking-[0.22em] text-muted">Preços</p>
+          <h2 className="mt-3 font-serif text-4xl tracking-tight">Comece pela demo. Fale de plano depois.</h2>
+          <div className="mt-10 overflow-x-auto">
+            <table className="w-full min-w-[36rem] border-t border-line text-left text-sm">
+              <thead>
+                <tr className="text-[11px] uppercase tracking-[0.16em] text-muted">
+                  <th className="py-4 pr-4 font-normal">Plano</th>
+                  <th className="py-4 pr-4 font-normal">Para quem</th>
+                  <th className="py-4 pr-4 font-normal">Valor</th>
+                  <th className="py-4 font-normal" />
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ["Demonstração", "Studio Bella, operação completa", "Grátis", "/login", "Entrar"],
+                  ["Essencial", "1 unidade, até 3 usuários", "R$ 189 / mês", "/contato", "Falar com vendas"],
+                  ["Operação", "Equipe e vários profissionais", "R$ 349 / mês", "/contato", "Falar com vendas"],
+                ].map((row) => (
+                  <tr key={row[0]} className="border-t border-line">
+                    <td className="py-5 pr-4 font-medium">{row[0]}</td>
+                    <td className="py-5 pr-4 text-muted">{row[1]}</td>
+                    <td className="py-5 pr-4 font-serif text-xl">{row[2]}</td>
+                    <td className="py-5 text-right">
+                      <Link href={row[3]} className="ink-link text-brand-2">
+                        {row[4]}
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-3xl px-6 py-20">
-        <h2 className="font-serif text-4xl tracking-tight">Perguntas frequentes</h2>
-        <div className="mt-8 space-y-3">
+        <h2 className="font-serif text-4xl tracking-tight">Perguntas que o dono faz</h2>
+        <div className="mt-8">
           {FAQ.map((item) => (
-            <div key={item.q} className="rounded-3xl border border-line bg-surface p-5">
+            <div key={item.q} className="border-t border-line py-6">
               <p className="font-medium">{item.q}</p>
               <p className="mt-2 text-sm leading-relaxed text-muted">{item.a}</p>
             </div>
@@ -396,25 +245,34 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className="px-6 pb-20">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-sidebar px-8 py-14 text-white mesh">
-          <p className="font-serif text-4xl tracking-tight">Pronto para ver a operação inteira?</p>
-          <p className="mt-3 max-w-xl text-white/70">
-            Entre como Marina Costa, dona do Studio Bella. Em dois minutos você
-            entende o funil, o caixa e quem está parado.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/login" size="lg" variant="secondary">
-              Abrir a demonstração
-            </Button>
-            <Button href="/contato" size="lg" variant="ghost" className="text-white hover:bg-white/10">
-              Falar com vendas
-            </Button>
+      <section className="relative overflow-hidden">
+        <div className="relative mx-auto max-w-6xl px-6 pb-20">
+          <div className="relative min-h-[22rem] overflow-hidden">
+            <Image
+              src={photos.desk.src}
+              alt={photos.desk.alt}
+              fill
+              sizes="100vw"
+              className="photo-treat object-cover"
+            />
+            <div className="absolute inset-0 bg-[#1a1410]/70" />
+            <div className="relative flex min-h-[22rem] flex-col justify-end px-8 py-12 text-white">
+              <p className="font-serif text-4xl tracking-tight sm:text-5xl">
+                Pronto para a manhã da Marina?
+              </p>
+              <p className="mt-3 max-w-lg text-white/75">
+                Entre, siga o roteiro, arraste um lead. Em dois minutos você
+                entende o funil, o caixa e quem está parado.
+              </p>
+              <div className="mt-8">
+                <Button href="/login" size="lg" variant="secondary">
+                  Abrir a demonstração
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
-
-      <SiteFooter />
-    </div>
+    </MarketingFrame>
   );
 }

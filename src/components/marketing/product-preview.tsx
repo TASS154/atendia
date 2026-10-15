@@ -1,8 +1,7 @@
 export function ProductPreview() {
   return (
-    <div className="rise relative">
-      <div className="absolute -inset-8 rounded-[2.6rem] bg-brand/12 blur-3xl" />
-      <div className="relative overflow-hidden rounded-[1.8rem] border border-white/50 bg-[#081614] shadow-[0_40px_90px_rgba(11,28,26,0.42)]">
+    <div className="fade-settle relative">
+      <div className="relative overflow-hidden border border-line bg-[#1c1814] shadow-[0_24px_60px_rgba(28,24,20,0.28)]">
         <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
           <span className="h-2.5 w-2.5 rounded-full bg-[#f87171]/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-[#fbbf24]/80" />
@@ -11,7 +10,7 @@ export function ProductPreview() {
             atendia.app / Studio Bella
           </span>
         </div>
-        <div className="grid bg-[#081614] md:grid-cols-[88px_1fr]">
+        <div className="grid bg-[#1c1814] md:grid-cols-[88px_1fr]">
           <div className="hidden space-y-2 p-3 md:block">
             {["Visão", "WhatsApp", "Leads", "Agenda", "Caixa"].map((item, i) => (
               <div
@@ -30,9 +29,9 @@ export function ProductPreview() {
                 <p className="text-[10px] uppercase tracking-[0.16em] text-[#6a635b]">
                   Bom dia, Marina
                 </p>
-                <p className="font-serif text-lg text-[#141210]">Hoje a operação pede atenção</p>
+                <p className="font-serif text-lg text-[#141210]">O que a manhã pede</p>
               </div>
-              <span className="rounded-full bg-[#0e6f67] px-2.5 py-1 text-[10px] text-white">
+              <span className="bg-[#3f5c4a] px-2.5 py-1 text-[10px] text-white">
                 3 alertas
               </span>
             </div>
@@ -54,10 +53,10 @@ export function ProductPreview() {
                 <p className="text-[11px] font-medium">Funil comercial</p>
                 <div className="mt-3 space-y-2">
                   {[
-                    ["Novo", 88, "#0e6f67"],
-                    ["Atendimento", 64, "#0a4e49"],
-                    ["Orçamento", 42, "#c45c26"],
-                    ["Negociação", 28, "#b45309"],
+                    ["Novo", 88, "#3f5c4a"],
+                    ["Atendimento", 64, "#2c4235"],
+                    ["Orçamento", 42, "#9c4a2a"],
+                    ["Negociação", 28, "#9a6708"],
                   ].map(([label, w, color]) => (
                     <div key={String(label)}>
                       <div className="mb-1 flex justify-between text-[9px] text-[#6a635b]">
@@ -73,15 +72,15 @@ export function ProductPreview() {
                   ))}
                 </div>
               </div>
-              <div className="rounded-2xl border border-[#d7efe8] bg-[#0b1c1a] p-3.5 text-white">
+              <div className="border border-[#e2ece4] bg-[#1c1814] p-3.5 text-white">
                 <p className="text-[11px] text-white/55">WhatsApp · Rita Almeida</p>
-                <p className="mt-2 rounded-2xl rounded-tl-sm bg-white/10 px-3 py-2 text-[11px] leading-relaxed">
+                <p className="mt-2 rounded-sm bg-white/10 px-3 py-2 text-[11px] leading-relaxed">
                   Oi, vim pelo Instagram. Vocês fazem luzes?
                 </p>
-                <p className="mt-2 ml-6 rounded-2xl rounded-tr-sm bg-[#0e6f67] px-3 py-2 text-[11px] leading-relaxed">
+                <p className="mt-2 ml-6 rounded-sm bg-[#3f5c4a] px-3 py-2 text-[11px] leading-relaxed">
                   Oi Rita! Temos horário amanhã às 14h. Te mando o orçamento.
                 </p>
-                <p className="mt-3 text-[10px] text-[#9cd7cf]">Lead criado · orçamento em rascunho</p>
+                <p className="mt-3 text-[10px] text-[#c5d6cb]">Lead criado · orçamento em rascunho</p>
               </div>
             </div>
           </div>

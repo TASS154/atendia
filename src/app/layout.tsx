@@ -1,16 +1,16 @@
+import type { ReactNode } from "react";
 import type { Metadata } from "next";
-import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
+import { Fraunces, Figtree } from "next/font/google";
 import "./globals.css";
 
-const sans = Plus_Jakarta_Sans({
+const sans = Figtree({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const serif = Newsreader({
+const serif = Fraunces({
   variable: "--font-serif",
   subsets: ["latin"],
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -30,7 +30,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
   return (
     <html
       lang="pt-BR"

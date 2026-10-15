@@ -3,7 +3,7 @@ import { Logo } from "@/components/marketing/logo";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-full flex-col items-center justify-center bg-bg px-6 text-center mesh">
+    <div className="flex min-h-full flex-col items-center justify-center bg-bg px-6 text-center">
       <Logo />
       <p className="mt-10 font-serif text-6xl">404</p>
       <h1 className="mt-3 font-serif text-3xl tracking-tight">Essa página não existe.</h1>

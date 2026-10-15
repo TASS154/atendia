@@ -3,13 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Logo } from "./logo";
 
 const LINKS = [
-  { href: "/#produto", label: "Produto" },
+  { href: "/#manha", label: "A manhã" },
   { href: "/casos", label: "Casos" },
   { href: "/precos", label: "Preços" },
   { href: "/sobre", label: "Sobre" },
@@ -21,16 +20,16 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-30 border-b border-line/70 bg-bg/75 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3.5">
+    <header className="sticky top-0 z-30 border-b border-line/80 bg-bg/90 backdrop-blur-md">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Logo />
-        <nav className="hidden items-center gap-7 text-sm text-muted md:flex">
+        <nav className="hidden items-center gap-8 text-sm text-muted md:flex">
           {LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "transition hover:text-ink",
+                "ink-link transition hover:text-ink",
                 pathname === link.href && "text-ink",
               )}
             >
@@ -38,19 +37,19 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <div className="hidden items-center gap-3 md:flex">
-          <Link href="/login" className="text-sm text-muted hover:text-ink">
+        <div className="hidden items-center gap-5 md:flex">
+          <Link href="/login" className="ink-link text-sm text-muted hover:text-ink">
             Entrar
           </Link>
           <Button href="/login">Ver demonstração</Button>
         </div>
         <button
           type="button"
-          className="rounded-full border border-line bg-surface p-2 md:hidden"
+          className="border border-line bg-surface px-3 py-1.5 text-xs uppercase tracking-[0.14em] md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
         >
-          {open ? <X size={16} /> : <Menu size={16} />}
+          {open ? "Fechar" : "Menu"}
         </button>
       </div>
       {open ? (

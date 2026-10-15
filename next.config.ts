@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/*": ["./prisma/**"],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
   turbopack: {
     root: path.join(__dirname),
   },
